@@ -1,13 +1,151 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 5px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: lightgrey;
+}
+
+.appContainer {
+  text-align: center;
+  max-width: 1000px;
+  min-width: 450px;
+  margin: 10px auto;
+  overflow: auto;
+  min-height: 400px;
+  border: 5px solid rgb(6, 8, 10);
+  background-color: rgb(90, 90, 90);
+  padding: 0px;
+  border-radius: 15px;
+}
+
+.LRContainer{
+  margin: 0px auto;
+  overflow: auto;
+  padding: 0px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.infoContainer {
+  text-align: left;
+  min-width: 430px;
+  margin: 10px auto;
+  overflow: auto;
+  min-height: 800px;
+  max-height: 800px;
+  background-color: rgb(39, 39, 39);
+  border: 5px solid navy;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.infoContainer h2 {
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 0px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+.btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.search {
+  margin: 0px;
+  padding: 0px;
+}
+
+.search label {
+  display: block;
+}
+
+.search input {
+  width: 70%;
+  height: 40px;
+  margin: 5px;
+  padding: 3px 7px;
+  font-size: 17px;
+  background-color: grey;
+  color: white;
+}
+
+.search input::placeholder {
+  color:lightgray;
+}
+
+.location {
+  background-color: rgb(90, 90, 90);
+  border-radius: 5px;
+  width: 100%;
+  padding: 5px;
+  margin-top: 15px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+}
+
+.location h1 {
+  padding-left: 130px;
+  text-justify: right;
+}
+
+.location h2 {
+  font-size: 40px;
+  padding: 0px;
+  line-height: 40px;
+}
+
+.location h3 {
+  padding: 0px;
+  margin-top: -5px;
+  text-indent: 15px;
+  color: rgb(39, 39, 39);
+}
+
+.location img {
+  justify-items: right;
+  max-height: 100px;
+}
+
+
+footer {
+  margin-top: 30px;
+  text-align: center;
 }
