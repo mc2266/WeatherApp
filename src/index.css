@@ -121,9 +121,19 @@ body {
   flex-direction: row;
 }
 
+.locationHighlight {
+  background-color: 'red';
+  border-radius: 5px;
+  width: 100%;
+  padding: 5px;
+  margin-top: 15px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+}
+
 .location h1 {
   padding-left: 130px;
-  text-justify: right;
 }
 
 .location h2 {

@@ -1,14 +1,13 @@
 import LocationOverview from "./LocationOverview"
 
-const Locations = ({ cities }) => {
+const Locations = ({ cities, onClick }) => {
     return (
-        <>
-            {cities.map((city) =>
-                <LocationOverview city={city.city} state={city.state}
-                temperature={city.temperature} weather={city.weather}
-            />)}
-    </>
-  )
+        <div>
+            {cities.map((city) => 
+                <LocationOverview key={city.id} city={city} onClick={onClick}/>)
+            }
+        </div>
+    )
 }
 
 export default Locations
