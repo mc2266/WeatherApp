@@ -6,32 +6,6 @@ import Locations from './Locations'
 
 
 const LocationsAndSearch = ( {onLocationClick} ) => {
-
-  const [searchResults, setResults] = useState([]);
-
-  const searchCities = (query) => {
-    if(!query) {
-      alert("Please enter a query to search for.")
-      return
-    }
-
-    console.log('searching',query)
-    fetch('location/search/?query='+query)
-      .then(res => res.json())
-      .then(data => data.map(item => item['woeid']))
-      .then(woeids => woeids.map((woeid) =>
-        fetch('location/'+woeid+'/')
-          .then(res => res.json())
-          .then(data => ({
-            woeid:data['woeid'],
-            city:data['title'],
-            state:data['parent']['title']
-          }))
-          .then(cityState => setResults([...searchResults, cityState]))
-      ))
-    }
-
-
   const [cities, setCities] = useState([
     {
       id: 1,
@@ -59,13 +33,48 @@ const LocationsAndSearch = ( {onLocationClick} ) => {
     }
   ])
 
+  const addLocation = (locationID) => {
+    console.log(locationID)
+  }
+
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchState, setSearchState] = useState(-3);
+
+  const searchCities = async (query) => {
+    if(!query) {
+      alert("Please enter a query to search for.")
+      return
+    }
+    setSearchState(-2)
+    console.log('searching',query)
+    const res = await fetch('location/search/?query='+query)
+    const data = await res.json()
+    const woeids = await data.map(item => item['woeid'])
+    setSearchState(woeids.length)
+    const newSearchResults = []
+    for (var i = 0; i < woeids.length && i < 20; i++) {
+      const cityRes = await fetch('location/'+woeids[i]+'/')
+      const cityData = await cityRes.json()
+      const cityInfo = {
+        woeid:woeids[i],
+        city:cityData['title'],
+        state:cityData['parent']['title'],
+      }
+      newSearchResults.push(cityInfo)
+      console.log(newSearchResults)
+    }
+    setSearchResults(newSearchResults)
+    setSearchState(-1)
+  }
+
   return (
     <div className='infoContainer'>
       <h2>Locations</h2>
       <SearchBar onSearch={searchCities}/>
       {
-        searchResults.length > 0 ?
-        <SearchResults results={searchResults}/> : <></>
+        searchState !== -3 ?
+        <SearchResults results={searchResults} searchState={searchState} addLocation={addLocation}/> 
+        : <></>
 
       }
       <Locations cities={cities} onClick={onLocationClick}/>
