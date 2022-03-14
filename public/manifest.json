@@ -22,6 +22,6 @@
   "background_color": "#ffffff",
 
   "permissions": [
-    "http://api.airvisual.com//"
+    "https://www.metaweather.com/*"
   ]
 }

@@ -4,7 +4,7 @@ const LocationName = ({ city, state }) => {
             <h2>{city}</h2>
             <h3>{state}</h3>
         </div>
-    )
-}
+    );
+};
 
 export default LocationName
