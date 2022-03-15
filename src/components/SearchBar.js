@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import Button from './Button'
 
+// This component contains the search button and the text entry bar.
 const SearchBar = ({ onSearch }) => {
     const [text, setText] = useState('')
 

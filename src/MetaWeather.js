@@ -1,7 +1,13 @@
+// This file is for making the calls to the MetaWeather API
+// This file also will filer out and only select the data that the
+// program uses to simplify code elsewhere.
+
+// Celsius to fahrenheit function
 const CtoF = (degC) => {
   return Math.round(degC * (9/5) + 32)
 }
 
+// Get from the API all cites that match the query.
 export const fetchCities = async (query, matchPrefixOnly) => {
   query = query.toLowerCase();
   const res = await fetch('location/search/?query='+query)
@@ -13,6 +19,10 @@ export const fetchCities = async (query, matchPrefixOnly) => {
   return woeids
 }
 
+// Get from the api details on all woeids in the given list.
+// More detail is necessary to show the data in the search results 
+// since state/parent location is not available in the initial
+// query result.
 export const fetchCityData = async (woeids) => {
   const result = []
   for (var i = 0; i < woeids.length && i < 20; i++) {

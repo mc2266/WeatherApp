@@ -1,8 +1,12 @@
 import SearchResult from "./SearchResult"
+// Search state definitions:
 // 0+: search result count
 // -1: done searching
 // -2: searching
-// -3: not searching
+// -3: not searching - should not be seen in program
+
+// Component displaying the search result as well as informing
+// the user the state of the search.
 const SearchResults = ({ results, searchState, addLocation}) => { 
 
   var info;

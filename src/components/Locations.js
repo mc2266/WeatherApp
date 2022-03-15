@@ -1,5 +1,6 @@
 import LocationOverview from "./LocationOverview"
 
+// Component that lists the location overviews
 const Locations = ({ citiesData, onClick, activeCity }) => {
     return (
         <div>

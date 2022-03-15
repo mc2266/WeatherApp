@@ -1,3 +1,4 @@
+// Holds the location city and state in the LocationOverview Component
 const LocationName = ({ city, state }) => {
     return (
         <div style={{minWidth: 100}}>

@@ -4,7 +4,9 @@ import LocationName from './LocationName'
 
 
 
-// This component
+// This component holds an overview for an added location.
+// These components can be selected from to view extra details in 
+// the right bar.
 const LocationOverview = ({ cityData, onClick, activeCity }) => {
   const [hover, setHover] = useState(false);
   const selectionStye = {

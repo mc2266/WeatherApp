@@ -1,6 +1,17 @@
+import { type } from '@testing-library/user-event/dist/type'
 import React from 'react'
 
+// If data contains weather dat then display it in an easy 
+// to read table
 const WeatherData = ({data}) => {
+  if(data == 'empty'){
+    return (
+      <div className='infoContainer'>
+        <h2>Add and select a city to see more!</h2>
+      </div>
+    )
+  }
+
   return (
     <div className='infoContainer'>
       <h1>{data['city']}, {data['state']}</h1>
