@@ -2,13 +2,21 @@
 This is a simple weather application for searching and viewing the current weather for multiple locations.
 
 
-# Start
+# Running the project
+
+This project was created with create-react-app from Facebook.
+You must hve npx (which includes npm) installed to run this app.
+
+To install npm, run:
+
+### `sudo apt install npx`
+
 In the project directory, you can run:
 
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser. The browser should automatically open.
 
 
 # USE
