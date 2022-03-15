@@ -5,14 +5,16 @@ import SearchResult from "./SearchResult"
 // -3: not searching
 const SearchResults = ({ results, searchState, addLocation}) => { 
 
-  console.log(results)
   var info;
   switch (searchState) {
     case -2:
-      info = <p1>Searching...</p1>
+      info = <p>Searching...</p>
       break;
     case -1:
       info = results.map(result => <SearchResult key={result['woeid']} result={result} addLocation={addLocation}/>)
+      break;
+    case 0:
+      info = <p>No results found!</p>
       break;
     default:
       if (searchState > 20) {

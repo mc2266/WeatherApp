@@ -1,10 +1,10 @@
 import LocationOverview from "./LocationOverview"
 
-const Locations = ({ cities, onClick }) => {
+const Locations = ({ citiesData, onClick, activeCity }) => {
     return (
         <div>
-            {cities.map((city) => 
-                <LocationOverview key={city.id} city={city} onClick={onClick}/>)
+            {citiesData.map((cityData) => 
+                <LocationOverview key={cityData.woeid} cityData={cityData} onClick={onClick} activeCity={activeCity}/>)
             }
         </div>
     )

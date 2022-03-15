@@ -3,42 +3,32 @@ import { useState } from 'react'
 import SearchBar from './SearchBar'
 import SearchResults from './SearchResults'
 import Locations from './Locations'
+import {fetchCities, fetchCityData} from '../MetaWeather'
 
 
-const LocationsAndSearch = ( {onLocationClick} ) => {
-  const [cities, setCities] = useState([
-    {
-      id: 1,
-      city: 'Seattle',
-      state: 'Washington',
-      temperature: 62,
-      weather: 'hr',
-      active: false
-    },
-    {
-      id: 2,
-      city: 'San Francisco',
-      state: 'California',
-      temperature: 68,
-      weather: 's',
-      active: false
-    },
-    {
-      id: 3,
-      city: 'Dallas',
-      state: 'Texas',
-      temperature: 75,
-      weather: 'lc',
-      active: false
+const LocationsAndSearch = ( {setActiveLocation} ) => {
+
+  const [activeCity, updateActiveCity] = useState(0);
+  const onLocationClick = (locationData) => {
+    updateActiveCity(locationData['woeid'])
+    setActiveLocation(locationData)
+  }
+
+  const [citiesData, setCities] = useState([])
+
+  const addLocation = (newCity) => {
+    setSearchState(-3)
+    
+    if (citiesData.map(city => city['woeid']).includes(newCity['woeid'])){
+      alert('City has already been added!')
+      return
     }
-  ])
-
-  const addLocation = (locationID) => {
-    console.log(locationID)
+    setCities([...citiesData, newCity])
   }
 
   const [searchResults, setSearchResults] = useState([]);
   const [searchState, setSearchState] = useState(-3);
+  const [usePrefixFilter, setPrefixFilter] = useState(false);
 
   const searchCities = async (query) => {
     if(!query) {
@@ -46,38 +36,33 @@ const LocationsAndSearch = ( {onLocationClick} ) => {
       return
     }
     setSearchState(-2)
-    console.log('searching',query)
-    const res = await fetch('location/search/?query='+query)
-    const data = await res.json()
-    const woeids = await data.map(item => item['woeid'])
-    setSearchState(woeids.length)
-    const newSearchResults = []
-    for (var i = 0; i < woeids.length && i < 20; i++) {
-      const cityRes = await fetch('location/'+woeids[i]+'/')
-      const cityData = await cityRes.json()
-      const cityInfo = {
-        woeid:woeids[i],
-        city:cityData['title'],
-        state:cityData['parent']['title'],
-      }
-      newSearchResults.push(cityInfo)
-      console.log(newSearchResults)
-    }
+
+    const woeids = await fetchCities(query, usePrefixFilter);
+    setSearchState(woeids.length);
+
+    const newSearchResults = await fetchCityData(woeids);
     setSearchResults(newSearchResults)
-    setSearchState(-1)
+
+    if (newSearchResults.length > 0) {
+      setSearchState(-1)
+    }
   }
 
   return (
     <div className='infoContainer'>
       <h2>Locations</h2>
       <SearchBar onSearch={searchCities}/>
+        <div>
+        <input className='checkBox' type='checkbox' value={usePrefixFilter} onChange={() => setPrefixFilter(!usePrefixFilter)}/>
+        Match result prefix exactly to search query.
+        </div>
       {
         searchState !== -3 ?
         <SearchResults results={searchResults} searchState={searchState} addLocation={addLocation}/> 
         : <></>
 
       }
-      <Locations cities={cities} onClick={onLocationClick}/>
+      <Locations citiesData={citiesData} onClick={onLocationClick} activeCity={activeCity}/>
     </div>
   )
 }

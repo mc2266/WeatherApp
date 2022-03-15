@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 
 import LocationsAndSearch from './LocationsAndSearch'
 import WeatherData from './WeatherData'
@@ -6,16 +6,16 @@ import WeatherData from './WeatherData'
 
 
 const LRContainer = () => {
-    
+  const [ActiveData, setActiveData] = useState([]);
 
-  const onLocClick = (location) => {
-    console.log(location)
+  const onLocClick = (locationData) => {
+    setActiveData(locationData)
   }
 
   return (
     <div className='LRContainer'>
-      <LocationsAndSearch onLocationClick={onLocClick}/>
-      <WeatherData />
+      <LocationsAndSearch setActiveLocation={onLocClick}/>
+      <WeatherData data={ActiveData}/>
     </div>
   )
 }
