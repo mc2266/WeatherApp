@@ -61,7 +61,7 @@ body {
 }
 
 .infoContainer table{
-  color:rgb(90, 90, 90);
+  color:'black';
   margin:0px;
   padding: 0px;
   white-space: 0px;

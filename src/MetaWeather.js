@@ -31,7 +31,7 @@ export const fetchCityData = async (woeids) => {
       temp_cur:CtoF(cityData['consolidated_weather'][0]['the_temp']),
       humidity:cityData['consolidated_weather'][0]['humidity'],
       visibility:cityData['consolidated_weather'][0]['visibility'],
-      active:false
+      predictability:cityData['consolidated_weather'][0]['predictability'],
     }
     result.push(cityInfo);
   }

@@ -2,6 +2,9 @@ import { useState } from 'react'
 
 import LocationName from './LocationName'
 
+
+
+// This component
 const LocationOverview = ({ cityData, onClick, activeCity }) => {
   const [hover, setHover] = useState(false);
   const selectionStye = {
